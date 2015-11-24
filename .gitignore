@@ -1,5 +1,6 @@
 #Log Files
 *.log
+*.log.lck
 
 #project settings
 .idea

@@ -11,7 +11,7 @@ public abstract class Log {
     private static FileHandler logFile;
     private static SimpleFormatter formatter;
     private static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private static final int STACK_TRACE_INDEX = 1;
+    private static final int STACK_TRACE_INDEX = 2;
     private static boolean dco;
 
     public static void init(boolean directConsoleOutput, boolean fileOutput) throws IOException {
@@ -36,26 +36,34 @@ public abstract class Log {
         LOGGER.setLevel(l);
     }
 
+    public static void enableConsoleOutput(boolean b){
+        dco = b;
+    }
+
+    private static String getCodeLineInfo(){
+        String s = "";
+        StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+        int c;
+        for(c=3; c<ste.length; c++){
+            s = (s + "    at " + ste[c].getClassName() + "." + ste[c].getMethodName() + "(" + ste[c].getFileName() + ":" + ste[c].getLineNumber() + ")" + "\n");
+        }
+        return s;
+    }
+
     public static void log(Level l, String msg){
+        msg = (getCodeLineInfo() + msg);
         LOGGER.log(l, msg);
-        //Add optional console output here
-    }
-
-    public static void log(Level l, String msg, StackTraceElement[] ste){
-        msg = (ste[1].getFileName() + " in line " + ste[STACK_TRACE_INDEX].getLineNumber() + ":\nClass " + ste[STACK_TRACE_INDEX].getClassName() + "." + ste[STACK_TRACE_INDEX].getMethodName() + ":\n" + msg);
-        LOGGER.log(l, msg);
-        //Add optional console output here
-    }
-
-    public static void out(String msg){
-        LOGGER.info(msg);
         if(dco){
-            System.out.println(msg);
+            if(l.intValue() > Level.INFO.intValue()){
+                System.err.println(msg);
+            }else{
+                System.out.println(msg);
+            }
         }
     }
 
-    public static void out(String msg, StackTraceElement[] ste){
-        msg = (ste[1].getFileName() + " in line " + ste[STACK_TRACE_INDEX].getLineNumber() + ":\nClass " + ste[STACK_TRACE_INDEX].getClassName() + "." + ste[STACK_TRACE_INDEX].getMethodName() + "()\n" + msg);
+    public static void out(String msg){
+        msg = (getCodeLineInfo() + msg);
         LOGGER.info(msg);
         if(dco){
             System.out.println(msg);
@@ -63,14 +71,7 @@ public abstract class Log {
     }
 
     public static void err(String msg){
-        LOGGER.severe(msg);
-        if(dco){
-            System.err.println(msg);
-        }
-    }
-
-    public static void err(String msg, StackTraceElement[] ste){
-        msg = (ste[1].getFileName() + " in line " + ste[STACK_TRACE_INDEX].getLineNumber() + ":\nClass " + ste[STACK_TRACE_INDEX].getClassName() + "." + ste[STACK_TRACE_INDEX].getMethodName() + "()\n" + msg);
+        msg = (getCodeLineInfo() + msg);
         LOGGER.severe(msg);
         if(dco){
             System.err.println(msg);

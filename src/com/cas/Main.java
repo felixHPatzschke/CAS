@@ -1,9 +1,9 @@
 package com.cas;
 
 import com.util.Log;
-
 import java.io.IOException;
 import java.util.logging.Level;
+import static com.util.Log.log;
 
 public class Main {
 
@@ -13,10 +13,11 @@ public class Main {
             Log.init(true, true);
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
         }
-        Log.out("Hello, World!", Thread.currentThread().getStackTrace());
-        Log.err("Error", Thread.currentThread().getStackTrace());
+        log(Level.INFO, "Hello, World!");
 
 
     }
+
 }

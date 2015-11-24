@@ -15,8 +15,8 @@ public class Main {
             e.printStackTrace();
             System.exit(1);
         }
-        log(Level.INFO, "Hello, World!");
 
+        new Console().run();
 
     }
 

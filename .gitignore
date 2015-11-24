@@ -1,0 +1,7 @@
+#Log Files
+*.log
+
+#project settings
+.idea
+out
+*.iml

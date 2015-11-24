@@ -1,11 +1,11 @@
 package com.cas.tree.leaves;
 
-import com.cas.tree.Leave;
+import com.cas.tree.Leaf;
 
 /**
  * Created by user on 24/11/15.
  */
-public class Boolean implements Leave{
+public class Boolean implements Leaf {
 
     @Override
     public String getStringRepresentation() {

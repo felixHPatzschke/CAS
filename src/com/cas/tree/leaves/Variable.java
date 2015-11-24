@@ -1,11 +1,11 @@
 package com.cas.tree.leaves;
 
-import com.cas.tree.Leave;
+import com.cas.tree.Leaf;
 
 /**
  * Created by user on 24/11/15.
  */
-public class Variable implements Leave {
+public class Variable implements Leaf {
 
     @Override
     public String getStringRepresentation() {

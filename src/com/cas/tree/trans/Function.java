@@ -1,5 +1,6 @@
 package com.cas.tree.trans;
 
+import com.cas.tree.NotCompletelyParsedException;
 import com.cas.tree.Parsed;
 import com.cas.tree.Unparsed;
 
@@ -8,12 +9,13 @@ import com.cas.tree.Unparsed;
  */
 public class Function implements Unparsed {
     @Override
-    public Parsed parse() {
+    public String getStringRepresentation() {
         return null;
     }
 
     @Override
-    public String getStringRepresentation() {
-        return null;
+    public boolean isNumber() throws NotCompletelyParsedException {
+        throw new NotCompletelyParsedException();
     }
+
 }

@@ -6,5 +6,5 @@ package com.cas.tree;
  */
 public interface Term {
     String getStringRepresentation();
-    boolean isNumber();
+    boolean isNumber() throws NotCompletelyParsedException;
 }

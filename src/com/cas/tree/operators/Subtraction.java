@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by user on 24/11/15.
  */
-public class Substraction implements Operator {
+public class Subtraction implements Operator {
     @Override
     public List<Term> getOperands() {
         return null;

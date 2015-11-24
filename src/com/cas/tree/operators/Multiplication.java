@@ -3,15 +3,18 @@ package com.cas.tree.operators;
 import com.cas.tree.Operator;
 import com.cas.tree.Term;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by user on 24/11/15.
  */
 public class Multiplication implements Operator {
+    ArrayList<Term> args;
+
     @Override
     public List<Term> getOperands() {
-        return null;
+        return args;
     }
 
     @Override
@@ -21,7 +24,19 @@ public class Multiplication implements Operator {
 
     @Override
     public String getStringRepresentation() {
-        return null;
+        String ret = new String();
+
+        boolean firstTerm = true;
+        for (Term t : args) {
+            if (firstTerm) {
+                ret = ret + "(" + t.getStringRepresentation() + ")";
+                firstTerm = true;
+            } else {
+                ret = ret + " * (" + t.getStringRepresentation() + ")";
+            }
+        }
+
+        return ("(" + ret + ")");
     }
 
     @Override

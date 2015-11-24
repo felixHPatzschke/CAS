@@ -11,7 +11,7 @@ public abstract class Log {
     private static FileHandler logFile;
     private static SimpleFormatter formatter;
     private static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private static final int STACK_TRACE_INDEX = 2;
+    private static final int STACK_TRACE_INDEX = 3;
     private static boolean dco;
 
     public static void init(boolean directConsoleOutput, boolean fileOutput) throws IOException {
@@ -44,37 +44,37 @@ public abstract class Log {
         String s = "";
         StackTraceElement[] ste = Thread.currentThread().getStackTrace();
         int c;
-        for(c=3; c<ste.length; c++){
-            s = (s + "    at " + ste[c].getClassName() + "." + ste[c].getMethodName() + "(" + ste[c].getFileName() + ":" + ste[c].getLineNumber() + ")" + "\n");
+        for(c=STACK_TRACE_INDEX; c<ste.length; c++){
+            s = (s + "\n    at " + ste[c].getClassName() + "." + ste[c].getMethodName() + "(" + ste[c].getFileName() + ":" + ste[c].getLineNumber() + ")");
         }
         return s;
     }
 
     public static void log(Level l, String msg){
-        msg = (getCodeLineInfo() + msg);
+        msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.log(l, msg);
         if(dco){
             if(l.intValue() > Level.INFO.intValue()){
-                System.err.println(msg);
+                System.err.println(l.getName() + ":" + msg);
             }else{
-                System.out.println(msg);
+                System.out.println(l.getName() + ":" + msg);
             }
         }
     }
 
     public static void out(String msg){
-        msg = (getCodeLineInfo() + msg);
+        msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.info(msg);
         if(dco){
-            System.out.println(msg);
+            System.out.println(LOGGER.getLevel().getName() + ":" + msg);
         }
     }
 
     public static void err(String msg){
-        msg = (getCodeLineInfo() + msg);
+        msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.severe(msg);
         if(dco){
-            System.err.println(msg);
+            System.err.println(LOGGER.getLevel().getName() + ":" + msg);
         }
     }
 

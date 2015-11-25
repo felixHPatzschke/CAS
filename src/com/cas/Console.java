@@ -12,11 +12,13 @@ import java.io.InputStreamReader;
 public class Console implements Runnable{
 
     private BufferedReader bufferedReader;
+    private CommandInterface commandInterface;
     private boolean shouldTerminate;
 
     public Console(){
         bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         shouldTerminate = false;
+        commandInterface = new CommandInterface();
     }
 
     @Override
@@ -24,25 +26,19 @@ public class Console implements Runnable{
         mainLoop();
     }
 
-    private String getInput() throws IOException {
-        return bufferedReader.readLine();
-    }
-
-    private String getOutput(String input){
-        if(input == null){
-            shouldTerminate = true;
-        }else if(input.startsWith("exit")){
-            shouldTerminate = true;
-        }
-        return "";
-    }
-
     private void mainLoop(){
+        String input, output;
         while(!shouldTerminate){
-            String input;
             try {
-                input = getInput();
-                String output = getOutput(input);
+                input = bufferedReader.readLine();
+                if(input == null || input.startsWith("exit")){
+                    shouldTerminate = true;
+                    output = "";
+                }else{
+                    commandInterface.setInput(input);
+                    commandInterface.handleInput();
+                    output = commandInterface.fetchOutputString();
+                }
                 System.out.println(output);
             } catch (IOException e) {
                 Log.err("IOException while fetching input from console");

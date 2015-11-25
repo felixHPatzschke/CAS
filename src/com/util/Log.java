@@ -32,10 +32,6 @@ public abstract class Log {
         }
     }
 
-    public static void setLevel(Level l){
-        LOGGER.setLevel(l);
-    }
-
     public static void enableConsoleOutput(boolean b){
         dco = b;
     }
@@ -66,7 +62,7 @@ public abstract class Log {
         msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.info(msg);
         if(dco){
-            System.out.println(LOGGER.getLevel().getName() + ":" + msg);
+            System.out.println(Level.INFO.getName() + ":" + msg);
         }
     }
 
@@ -74,7 +70,7 @@ public abstract class Log {
         msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.severe(msg);
         if(dco){
-            System.err.println(LOGGER.getLevel().getName() + ":" + msg);
+            System.err.println(Level.SEVERE.getName() + ":" + msg);
         }
     }
 

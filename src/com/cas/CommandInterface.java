@@ -7,11 +7,12 @@ import com.cas.tree.Term;
  */
 public class CommandInterface {
 
-    private String input;
+    private String input,outputString;
 
 
     public CommandInterface(){
-
+        input = "";
+        outputString = "";
     }
 
 
@@ -20,11 +21,11 @@ public class CommandInterface {
     }
 
     public void handleInput(){
-
+        outputString = input;
     }
 
     public String fetchOutputString(){
-        return "";
+        return outputString;
     }
 
     public Term fetchOutput(){

@@ -1,9 +1,9 @@
 package com.cas;
 
 import com.util.Log;
+import com.util.ui.Console;
+
 import java.io.IOException;
-import java.util.logging.Level;
-import static com.util.Log.log;
 
 public class Main {
 

@@ -1,5 +1,6 @@
-package com.cas;
+package com.util.ui;
 
+import com.cas.CommandInterface;
 import com.util.Log;
 
 import java.io.BufferedReader;

@@ -13,7 +13,7 @@ import java.util.List;
 public class Addition implements Operator {
     ArrayList<Term> summands;
 
-    Addition(ArrayList<Term> summands) {
+    public Addition(ArrayList<Term> summands) {
         this.summands = summands;
     }
 
@@ -42,8 +42,7 @@ public class Addition implements Operator {
     @Override
     public boolean isNumber() throws NotCompletelyParsedException {
         boolean ret = true;
-        for (Term t : summands)
-        {
+        for (Term t : summands) {
             ret = ret && t.isNumber();
         }
         return ret;

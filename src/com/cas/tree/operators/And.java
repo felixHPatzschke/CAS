@@ -1,10 +1,9 @@
 package com.cas.tree.operators;
 
-import com.cas.tree.NotCompletelyParsedException;
+import com.cas.tree.parsers.NotCompletelyParsedException;
 import com.cas.tree.Operator;
 import com.cas.tree.Term;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,9 +11,9 @@ import java.util.List;
  */
 public class And implements Operator {
 
-    ArrayList<Term> operands;
+    List<Term> operands;
 
-    And(ArrayList<Term> operands) {
+    public And(List<Term> operands) {
         this.operands = operands;
     }
 

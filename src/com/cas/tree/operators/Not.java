@@ -1,6 +1,6 @@
 package com.cas.tree.operators;
 
-import com.cas.tree.NotCompletelyParsedException;
+import com.cas.tree.parsers.NotCompletelyParsedException;
 import com.cas.tree.Operator;
 import com.cas.tree.Term;
 
@@ -12,6 +12,11 @@ import java.util.List;
  */
 public class Not implements Operator {
     Term operand;
+
+    public Not(Term operand)
+    {
+        this.operand = operand;
+    }
 
     @Override
     public List<Term> getOperands() {

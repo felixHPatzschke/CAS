@@ -1,7 +1,6 @@
 package com.cas.tree.trans;
 
-import com.cas.tree.NotCompletelyParsedException;
-import com.cas.tree.Parsed;
+import com.cas.tree.parsers.NotCompletelyParsedException;
 import com.cas.tree.Unparsed;
 
 /**

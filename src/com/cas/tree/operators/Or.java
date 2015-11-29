@@ -10,7 +10,12 @@ import java.util.List;
  * Created by user on 24/11/15.
  */
 public class Or implements Operator {
-    ArrayList<Term> args;
+    List<Term> args;
+
+    public Or(List<Term> operands)
+    {
+        this.args = operands;
+    }
 
     @Override
     public List<Term> getOperands() {

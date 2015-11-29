@@ -1,6 +1,6 @@
 package com.cas.tree.operators;
 
-import com.cas.tree.NotCompletelyParsedException;
+import com.cas.tree.parsers.NotCompletelyParsedException;
 import com.cas.tree.Operator;
 import com.cas.tree.Term;
 import com.cas.tree.leaves.Variable;

@@ -16,7 +16,7 @@ import java.util.*;
 public class StringParser implements TermParser {
 
     protected ArrayList<String> operators = new ArrayList<>();
-    public java.util.HashMap<String, Class<? extends Operator>> operatorMap = new HashMap<>();
+    public static java.util.HashMap<String, Class<? extends Operator>> operatorMap = new HashMap<>();
 
     public StringParser() {
         initOperatorMap();
@@ -36,7 +36,7 @@ public class StringParser implements TermParser {
         operators.add(10, "/");
     }
 
-    public final void initOperatorMap(){
+    public static final void initOperatorMap(){
         operatorMap.put("and", And.class);
         operatorMap.put("or", Or.class);
         operatorMap.put("~", Not.class);

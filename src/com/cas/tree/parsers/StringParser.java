@@ -1,21 +1,26 @@
 package com.cas.tree.parsers;
 
+import com.cas.tree.Operator;
 import com.cas.tree.Parsed;
 import com.cas.tree.Term;
 import com.cas.tree.Unparsed;
+import com.cas.tree.operators.*;
 import com.cas.tree.trans.StringInput;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 /**
  * Created by user on 25/11/15.
  */
 public class StringParser implements TermParser {
 
-    ArrayList<String> operators = new ArrayList<String>();
+    protected ArrayList<String> operators = new ArrayList<>();
+    public java.util.HashMap<String, Class<? extends Operator>> operatorMap = new HashMap<>();
 
     public StringParser() {
+        initOperatorMap();
+
         operators.add(0, "and");
         operators.add(1, "or");
         operators.add(2, "~");
@@ -31,18 +36,34 @@ public class StringParser implements TermParser {
         operators.add(10, "/");
     }
 
+    public final void initOperatorMap(){
+        operatorMap.put("and", And.class);
+        operatorMap.put("or", Or.class);
+        operatorMap.put("~", Not.class);
+
+        operatorMap.put("<", Less.class);
+        operatorMap.put("<=", LessEq.class);
+        operatorMap.put(">", Greater.class);
+        operatorMap.put(">=", GreaterEq.class);
+        operatorMap.put("=", Equals.class);
+
+        operatorMap.put("+", And.class);
+        operatorMap.put("*", Or.class);
+        operatorMap.put("/", Not.class);
+    }
+
     @Override
     public Term parse(Unparsed term) throws ParserException {
 
         String inp = term.getStringRepresentation();
 
-        inp.replaceAll("-", "-1*");
-
         if (inp.length() == 0) {
-            throw new ParserException();
+            throw new ParserException("Input was empty.");
         }
 
-        inp.replaceAll("\\s+", "");
+        inp = inp.replaceAll("-", "(-1)*");
+
+        inp = inp.replaceAll("\\s+", "");
 
         while (inp.startsWith("(")) {
             if (inp.endsWith(")")) {
@@ -54,7 +75,7 @@ public class StringParser implements TermParser {
 
         for (String op : operators) {
             if (inp.contains(op)) {
-                List<String> operands = new ArrayList<String>();
+                List<String> operands = new ArrayList<>();
                 operands.add("");
                 int opChar = 0;
                 int bracketCounter = 0;
@@ -78,7 +99,7 @@ public class StringParser implements TermParser {
                         }
                     } else {
                         opChar = 0;
-                        operands.get(operands.size() - 1).concat(String.valueOf(c));
+                        operands.get(operands.size() - 1).concat(String.valueOf(c)); // result is ignored
                     }
                 }
 
@@ -86,7 +107,7 @@ public class StringParser implements TermParser {
                     operands.remove(0);
                 }
 
-                List<Term> terms = new ArrayList<Term>();
+                List<Term> terms = new ArrayList<>();
                 for (String o : operands) {
                     terms.add(parse(new StringInput(o)));
                 }

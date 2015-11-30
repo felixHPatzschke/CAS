@@ -46,14 +46,26 @@ public abstract class Log {
         return s;
     }
 
+    public static void log(Level l, Throwable t){
+        String msg = (t.getClass().getSimpleName() + ": " + t.getMessage() + getCodeLineInfo());
+        LOGGER.log(l, msg);
+        if(dco){
+            if(l.intValue() > Level.INFO.intValue()){
+                System.err.println(l.getName() + ": " + msg);
+            }else{
+                System.out.println(l.getName() + ": " + msg);
+            }
+        }
+    }
+
     public static void log(Level l, String msg){
         msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.log(l, msg);
         if(dco){
             if(l.intValue() > Level.INFO.intValue()){
-                System.err.println(l.getName() + ":" + msg);
+                System.err.println(l.getName() + ": " + msg);
             }else{
-                System.out.println(l.getName() + ":" + msg);
+                System.out.println(l.getName() + ": " + msg);
             }
         }
     }
@@ -62,7 +74,15 @@ public abstract class Log {
         msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.info(msg);
         if(dco){
-            System.out.println(Level.INFO.getName() + ":" + msg);
+            System.out.println(Level.INFO.getName() + ": " + msg);
+        }
+    }
+
+    public static void err(Throwable t){
+        String msg = (t.getClass().getSimpleName() + ": " + t.getMessage() + getCodeLineInfo());
+        LOGGER.log(Level.SEVERE, msg);
+        if(dco){
+            System.err.println(Level.SEVERE.getName() + ": " + msg);
         }
     }
 
@@ -70,7 +90,7 @@ public abstract class Log {
         msg = (getCodeLineInfo() + "\n" + msg + "\n");
         LOGGER.severe(msg);
         if(dco){
-            System.err.println(Level.SEVERE.getName() + ":" + msg);
+            System.err.println(Level.SEVERE.getName() + ": " + msg);
         }
     }
 

@@ -14,10 +14,13 @@ public class Derivative implements Operator {
     Term t;
     Variable x;
 
-    Derivative(Term t, Variable x)
-    {
-        this.t = t;
-        this.x = x;
+    public Derivative(){}
+
+
+    @Override
+    public void setOperands(List<Term> operands) {
+        this.t = operands.get(0);
+        this.x = (Variable) operands.get(1);
     }
 
     @Override

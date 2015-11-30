@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class Integral implements Operator {
     @Override
+    public void setOperands(List<Term> operands) {}
+
+    @Override
     public List<Term> getOperands() {
         return null;
     }

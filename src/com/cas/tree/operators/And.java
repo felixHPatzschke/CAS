@@ -4,6 +4,7 @@ import com.cas.tree.parsers.NotCompletelyParsedException;
 import com.cas.tree.Operator;
 import com.cas.tree.Term;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,10 @@ public class And implements Operator {
 
     List<Term> operands;
 
-    public And(List<Term> operands) {
+    public And(){}
+
+    @Override
+    public void setOperands(List<Term> operands) {
         this.operands = operands;
     }
 

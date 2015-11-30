@@ -13,6 +13,12 @@ public class Modulo implements Operator {
     Term a,b;
 
     @Override
+    public void setOperands(List<Term> operands) {
+        a = operands.get(0);
+        b = operands.get(1);
+    }
+
+    @Override
     public List<Term> getOperands() {
         ArrayList<Term> res = new ArrayList<>();
         res.add(0, a);

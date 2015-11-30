@@ -8,7 +8,10 @@ import java.util.List;
 /**
  * Created by user on 24/11/15.
  */
-public class Faculty implements Operator {
+public class Factorial implements Operator {
+    @Override
+    public void setOperands(List<Term> operands) {}
+
     @Override
     public List<Term> getOperands() {
         return null;

@@ -10,7 +10,12 @@ import java.util.List;
  * Created by user on 24/11/15.
  */
 public class Multiplication implements Operator {
-    ArrayList<Term> args;
+    List<Term> args;
+
+    @Override
+    public void setOperands(List<Term> operands) {
+        args = operands;
+    }
 
     @Override
     public List<Term> getOperands() {

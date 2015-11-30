@@ -13,6 +13,14 @@ public class Logarithm implements Operator {
     Term base, arg;
 
     @Override
+    public void setOperands(List<Term> operands) {
+        arg = operands.get(0);
+        base = operands.get(1);
+        // if operands[1] does not exist:
+        // base = E
+    }
+
+    @Override
     public List<Term> getOperands() {
         ArrayList<Term> res = new ArrayList<>();
         res.add(0, arg);

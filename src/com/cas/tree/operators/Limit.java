@@ -16,6 +16,13 @@ public class Limit implements Operator {
     Variable x;
 
     @Override
+    public void setOperands(List<Term> operands) {
+        operand = operands.get(0);
+        x = (Variable) operands.get(1);
+        towardValue = operands.get(2);
+    }
+
+    @Override
     public List<Term> getOperands() {
         ArrayList<Term> res = new ArrayList<>();
         res.add(0, operand);

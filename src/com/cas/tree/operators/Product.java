@@ -15,6 +15,14 @@ public class Product implements Operator {
     Variable counter;
 
     @Override
+    public void setOperands(List<Term> operands) {
+        factor = operands.get(0);
+        counter = (Variable)operands.get(1);
+        lowerBound = operands.get(2);
+        upperBound = operands.get(3);
+    }
+
+    @Override
     public List<Term> getOperands() {
         ArrayList<Term> res = new ArrayList<>();
         res.add(0, factor);

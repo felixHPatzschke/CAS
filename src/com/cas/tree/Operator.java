@@ -6,5 +6,6 @@ import java.util.List;
  * Created by user on 24/11/15.
  */
 public interface Operator extends Parsed {
+    void setOperands(List<Term> operands);
     List<Term> getOperands();
 }

@@ -12,9 +12,11 @@ import java.util.List;
 public class Or implements Operator {
     List<Term> args;
 
-    public Or(List<Term> operands)
-    {
-        this.args = operands;
+    public Or() {}
+
+    @Override
+    public void setOperands(List<Term> operands) {
+        args = operands;
     }
 
     @Override

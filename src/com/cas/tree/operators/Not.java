@@ -13,9 +13,11 @@ import java.util.List;
 public class Not implements Operator {
     Term operand;
 
-    public Not(Term operand)
-    {
-        this.operand = operand;
+    public Not() {}
+
+    @Override
+    public void setOperands(List<Term> operands) {
+        operand = operands.get(0);
     }
 
     @Override

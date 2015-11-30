@@ -14,6 +14,14 @@ public class Root implements Operator {
     Term radicand, exponent;
 
     @Override
+    public void setOperands(List<Term> operands) {
+        radicand = operands.get(0);
+        exponent = operands.get(1);
+        // if operands[1] does not exist:
+        // exponent = 2
+    }
+
+    @Override
     public List<Term> getOperands() {
         ArrayList<Term> res = new ArrayList<>();
         res.add(0, radicand);

@@ -14,6 +14,12 @@ public class Power implements Operator {
     Term base, exponent;
 
     @Override
+    public void setOperands(List<Term> operands) {
+        base = operands.get(0);
+        exponent = operands.get(1);
+    }
+
+    @Override
     public List<Term> getOperands() {
         ArrayList<Term> res = new ArrayList<>();
         res.add(0, base);

@@ -11,10 +11,13 @@ import java.util.List;
  * Created by user on 24/11/15.
  */
 public class Addition implements Operator {
-    ArrayList<Term> summands;
+    List<Term> summands;
 
-    public Addition(ArrayList<Term> summands) {
-        this.summands = summands;
+    public Addition() {}
+
+    @Override
+    public void setOperands(List<Term> operands) {
+        this.summands = operands;
     }
 
     @Override

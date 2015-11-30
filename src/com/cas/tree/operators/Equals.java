@@ -9,6 +9,16 @@ import java.util.List;
  * Created by user on 24/11/15.
  */
 public class Equals implements Operator {
+    Term leftSide, rightSide;
+
+    public Equals(){}
+
+    @Override
+    public void setOperands(List<Term> operands) {
+        leftSide = operands.get(0);
+        rightSide = operands.get(1);
+    }
+
     @Override
     public List<Term> getOperands() {
         return null;

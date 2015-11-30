@@ -48,7 +48,7 @@ public class StringParser implements TermParser {
             if (inp.endsWith(")")) {
                 inp = inp.substring(1, inp.length() - 2);
             } else {
-                throw new ParserBracketException();
+                throw new ParserBracketException(); // what about "(a^b)*c" ? The Brackets may not be necessary, but this has to be a valid input.
             }
         }
 

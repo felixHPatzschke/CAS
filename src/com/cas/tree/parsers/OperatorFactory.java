@@ -1,5 +1,6 @@
 package com.cas.tree.parsers;
 
+import com.cas.tree.Operator;
 import com.cas.tree.Term;
 import com.cas.tree.operators.And;
 import com.cas.tree.operators.Not;
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class OperatorFactory {
     static public Term createOperator(String op, List<Term> operands) throws WrongArgumentNumberException, UnknownOperatorException {
+        /*
         switch (op)
         {
             case "and":
@@ -30,6 +32,16 @@ public class OperatorFactory {
                 return new Not(operands.get(0));
 
             //TODO: implement other ops
+        }
+        */
+        try {
+            Operator res = StringParser.operatorMap.get(op).newInstance();
+            res.setOperands(operands);
+            return res;
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
 
         throw new UnknownOperatorException();

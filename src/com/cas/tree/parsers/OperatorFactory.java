@@ -14,6 +14,9 @@ import java.util.List;
  * Created by user on 28/11/15.
  */
 public class OperatorFactory {
+    /**
+     * Shouldn't the operator-creating going on within the StringParser? Or are StringParser, LatexParser, *Parser, supposed to use different OperatorFactories?
+     */
     static public Term createOperator(String op, List<Term> operands) throws WrongArgumentNumberException, UnknownOperatorException {
         /*
         switch (op)

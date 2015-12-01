@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by felix on 01.12.2015.
  */
-public class LocalNamespace extends AbstractNamespace{
+public class LocalNamespace extends AbstractNamespace {
 
     public LocalNamespace() {
         super();

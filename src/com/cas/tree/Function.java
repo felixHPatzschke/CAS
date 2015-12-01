@@ -13,6 +13,7 @@ public class Function implements Term {
     LocalNamespace namespace;
     Identifier name;
     ArrayList<Term> args;
+    Term definition;
 
 
     @Override

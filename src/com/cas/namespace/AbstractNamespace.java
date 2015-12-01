@@ -1,6 +1,7 @@
 package com.cas.namespace;
 
 import com.cas.tree.Term;
+import com.util.PreciseMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +11,11 @@ import java.util.Map;
  */
 public abstract class AbstractNamespace implements Namespace {
 
-    protected HashMap<Identifier, Term> variables;
+    protected PreciseMap<Identifier, Term> variables;
 
 
     public AbstractNamespace(){
-        variables = new HashMap<>();
+        variables = new PreciseMap<>();
     }
 
 

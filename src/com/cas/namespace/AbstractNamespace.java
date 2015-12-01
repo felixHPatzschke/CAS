@@ -1,21 +1,32 @@
 package com.cas.namespace;
 
 import com.cas.tree.Term;
-import com.cas.tree.leaves.Variable;
 
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Created by felix on 01.12.2015.
  */
 public abstract class AbstractNamespace {
 
-    public abstract void add(Identifier id, Class<? extends Term> value);
-    public void add(String id, Class<? extends Term> value) {
+    protected HashMap<Identifier, Term> variables;
+
+
+    public AbstractNamespace(){
+        variables = new HashMap<>();
+    }
+
+
+    public void add(Identifier id, Term value) {
+        variables.put(id, value);
+    }
+    public void add(String id, Term value) {
         add(new Identifier(id), value);
     }
-    public abstract Class<? extends Term> get(Identifier id);
-    public Class<? extends Term> get(String id) {
+    public Term get(Identifier id) {
+        return variables.get(id);
+    }
+    public Term get(String id) {
         return get(new Identifier(id));
     }
 

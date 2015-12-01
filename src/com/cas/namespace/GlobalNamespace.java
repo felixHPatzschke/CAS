@@ -10,19 +10,8 @@ import java.util.Map;
  */
 public class GlobalNamespace extends AbstractNamespace{
 
-    Map<Identifier, Variable> variables;
-    Map<Identifier, Term> functions;    //TODO define function class which includes a LocalNamespace
-    Map<Identifier, Term> terms;
-
-
-    @Override
-    public void add(Identifier id, Class<? extends Term> value) {
-
-    }
-
-    @Override
-    public Class<? extends Term> get(Identifier id) {
-        return null;
+    public GlobalNamespace() {
+        super();
     }
 
 }

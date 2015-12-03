@@ -83,4 +83,12 @@ public class PreciseMap<KeyType, ValueType> {
         return values;
     }
 
+    public List<Map.Entry<KeyType, ValueType>> entries(){
+        ArrayList<Map.Entry<KeyType, ValueType>> res = new ArrayList<Map.Entry<KeyType, ValueType>>();
+        for(int c=0; c<=highestIndex; c++){
+            res.add(c, new PreciseEntry<KeyType, ValueType>(keys.get(c), values.get(c)));
+        }
+        return res;
+    }
+
 }

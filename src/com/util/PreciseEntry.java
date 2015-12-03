@@ -7,8 +7,8 @@ import java.util.Map;
  */
 public class PreciseEntry<KeyType, ValueType> implements Map.Entry<KeyType, ValueType> {
 
-    KeyType key;
-    ValueType value;
+    private KeyType key;
+    private ValueType value;
 
 
     public PreciseEntry(KeyType key, ValueType value){
@@ -39,6 +39,9 @@ public class PreciseEntry<KeyType, ValueType> implements Map.Entry<KeyType, Valu
         return (o instanceof PreciseEntry && ((PreciseEntry) o).key.equals(key) && ((PreciseEntry) o).value.equals(value));
     }
 
+    /**
+     * @return Just 0 at the moment
+     */
     @Override
     public int hashCode() {
         return 0;

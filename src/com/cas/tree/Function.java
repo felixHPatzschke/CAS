@@ -18,7 +18,16 @@ public class Function implements Term {
 
     @Override
     public String getStringRepresentation() {
-        return name.toString();
+        String res = name.toString();
+        res = res + "(";
+        for(int c=0; c<args.size(); c++){
+            if(c!=0){
+                res = res + "; ";
+            }
+            res = res + args.get(c).getStringRepresentation();
+        }
+        res = res + ")";
+        return res;
     }
 
     @Override

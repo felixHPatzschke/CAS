@@ -62,13 +62,13 @@ public abstract class AbstractNamespace implements Namespace {
     }
 
     @Override
-    public void removeOnlyDefinition(Identifier id) {
+    public void removeDefinition(Identifier id) {
         variables.put(id, null);
     }
 
     @Override
-    public void removeOnlyDefinition(String id) {
-        removeOnlyDefinition(new Identifier(id));
+    public void removeDefinition(String id) {
+        removeDefinition(new Identifier(id));
     }
 
     @Override

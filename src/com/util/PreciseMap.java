@@ -20,7 +20,7 @@ public class PreciseMap<KeyType, ValueType> {
 
 
     public int size() {
-        return highestIndex;
+        return highestIndex+1;
     }
 
     public boolean isEmpty() {

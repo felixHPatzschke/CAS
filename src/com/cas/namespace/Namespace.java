@@ -3,6 +3,7 @@ package com.cas.namespace;
 import com.cas.tree.Term;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,6 +20,10 @@ public interface Namespace {
     void remove(String id);
     boolean containsIdentifier(Identifier id);
     boolean containsIdentifier(String id);
+    void removeOnlyDefinition(Identifier id);
+    void removeOnlyDefinition(String id);
+    List<Identifier> getDefined();
+    List<Identifier> getUndefined();
 
     boolean isEmpty();
     void clear();

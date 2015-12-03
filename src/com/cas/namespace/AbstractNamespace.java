@@ -3,7 +3,9 @@ package com.cas.namespace;
 import com.cas.tree.Term;
 import com.util.PreciseMap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,6 +59,42 @@ public abstract class AbstractNamespace implements Namespace {
     @Override
     public boolean containsIdentifier(String id) {
         return containsIdentifier(new Identifier(id));
+    }
+
+    @Override
+    public void removeOnlyDefinition(Identifier id) {
+        variables.put(id, null);
+    }
+
+    @Override
+    public void removeOnlyDefinition(String id) {
+        removeOnlyDefinition(new Identifier(id));
+    }
+
+    @Override
+    public List<Identifier> getDefined() {
+        ArrayList<Identifier> res = new ArrayList<>();
+        int i=0;
+        for(int c=0; c<variables.size(); c++) {
+            if(variables.get(variables.keys().get(c)) != null) {
+                res.add(i, variables.keys().get(c));
+                i++;
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public List<Identifier> getUndefined() {
+        ArrayList<Identifier> res = new ArrayList<>();
+        int i=0;
+        for(int c=0; c<variables.size(); c++) {
+            if(variables.get(variables.keys().get(c)) == null) {
+                res.add(i, variables.keys().get(c));
+                i++;
+            }
+        }
+        return res;
     }
 
     @Override

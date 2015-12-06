@@ -1,12 +1,13 @@
 package com.cas.tree.structures;
 
 import com.cas.tree.Term;
+import com.cas.tree.parsers.NotCompletelyParsedException;
 import com.util.Log;
 
 /**
  * Created by felix on 05.12.2015.
  */
-public class Matrix{
+public class Matrix implements Term{
 
     public final int rows, columns;
     private Term[][] values;
@@ -44,8 +45,8 @@ public class Matrix{
     }
 
     @Override
-    public boolean equals(Object o){
-        if(o instanceof Matrix){
+    public boolean equals(Object o) {
+        if(o instanceof Matrix) {
             if(((Matrix) o).rows == rows && ((Matrix) o).columns==columns) {
                 for(int i=1; i<=rows; i++) {
                     for(int j=1; j<=columns; j++) {
@@ -68,4 +69,27 @@ public class Matrix{
         }
     }
 
+    @Override
+    public String getStringRepresentation() {
+        String res = "[";
+        for(int i=0; i<rows; i++) {
+            res = res + "[";
+            for(int j=0; j<columns; j++) {
+                res = res + values[i][j].getStringRepresentation();
+                if(j<columns-1) {
+                    res = res + "; ";
+                }
+            }
+            res = res + "]";
+            if(i<rows-1){
+                res = res + "; ";
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public boolean isNumber() throws NotCompletelyParsedException {
+        return false;
+    }
 }

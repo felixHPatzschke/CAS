@@ -51,7 +51,7 @@ public class Matrix implements Term{
                 for(int i=1; i<=rows; i++) {
                     for(int j=1; j<=columns; j++) {
                         try {
-                            if(((Matrix) o).get(i,j) != get(i,j)) {
+                            if(!(((Matrix) o).get(i,j).equals(get(i,j)))) {
                                 return false;
                             }
                         } catch (DimensionError dimensionError) {

@@ -115,6 +115,30 @@ public class Tensor<T extends Term> implements Term{
         return null;
     }
 
+    public Tensor<T> plus(Tensor<T> arg) throws IncompatibleDimensionsException {
+        return null; // TODO
+    }
+
+    public Tensor<T> minus(Tensor<T> arg) throws IncompatibleDimensionsException {
+        return null; // TODO
+    }
+
+    public Tensor<T> times(Tensor<T> arg) throws IncompatibleDimensionsException {
+        return null; // TODO
+    }
+
+    public Tensor<T> times(Term t) {
+        return null; // TODO
+    }
+
+    public T determinant() throws IncompatibleDimensionsException {
+        return null; // TODO
+    }
+
+    public Tensor<T> transpose() throws IncompatibleDimensionsException {
+        return null; // TODO
+    }
+
     @Override
     public String getStringRepresentation() {
         int[] i = new int[DIM.length];

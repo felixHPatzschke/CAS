@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by felix on 08.12.2015.
  */
-public class Tensor<T extends Term> implements Term{
+public class Tensor<T extends Term> implements Term, Structure {
 
     public interface Order {
         int SCALAR = 0,
@@ -108,7 +108,7 @@ public class Tensor<T extends Term> implements Term{
                     resDim[c] = DIM[c+i.length];
                 }
                 Tensor<T> res = new Tensor<>(resDim);
-                // TODO
+                // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return res;
             }
         }
@@ -151,7 +151,7 @@ public class Tensor<T extends Term> implements Term{
     public Tensor<T> transpose() throws DimensionError {
         switch(ORDER) {
             case 0:
-                return this;
+                return this;    // or throw dimension error
             case 1:
                 Tensor<T> res1 = new Tensor<>(DIM[1], DIM[0]);
                 for(int c=0; c<DIM[0]; c++) {
@@ -173,25 +173,34 @@ public class Tensor<T extends Term> implements Term{
 
     @Override
     public String getStringRepresentation() {
-        int[] i = new int[DIM.length];
-        for(int c=0; c<i.length; c++) {
-            i[c] = 0;
+        String res;
+        switch(ORDER) {
+            case 0:
+                res = values.get(0).getStringRepresentation();
+                break;
+            case 1:
+                res = "[";
+                for(int c=0; c<DIM[0]; c++) {
+                    if(c!=0) {
+                        res = res + "; ";
+                    }
+                    res = res + values.get(c).getStringRepresentation();
+                }
+                res = res + "]";
+                break;
+            default:
+                res = "[";
+                for(int c=0; c<DIM[0]; c++) {
+                    try {
+                        res = res + getSubTensor(c).getStringRepresentation();
+                    } catch (DimensionError ex) {
+                        // TODO: log
+                    }
+                }
+                res = res + "]";
+                break;
         }
-        String res = "";
-        for(int c=0; c<DIM.length; c++) {
-            res = res + "[";
-        }
-        int q = 0;
-        for(int c=0; c<values.size(); c++){
-            if(c != 0) {
-                res = res + "; ";
-            }
-            res = res + values.get(c).getStringRepresentation();
-            // TODO: set brackets
-        }
-        res = res + "]";
         return res;
-        // TODO: try using subtensors?
     }
 
     @Override

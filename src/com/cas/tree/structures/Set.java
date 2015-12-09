@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by felix on 05.12.2015.
  */
-public class Set /* should extend ArrayList<Term> ? */ implements Term {
+public class Set /* should extend ArrayList<Term> ? */ implements Term, Structure {
 
     private ArrayList<Term> elements;
 

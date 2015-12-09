@@ -132,11 +132,43 @@ public class Tensor<T extends Term> implements Term{
     }
 
     public T determinant() throws IncompatibleDimensionsException {
-        return null; // TODO
+        if(ORDER != 2) {
+            throw new IncompatibleDimensionsException("Determinant is only defined for second-order-tensors (Matrices)");
+        }
+        if(DIM[0] != DIM[1]) {
+            throw new IncompatibleDimensionsException("Determinant is only defined for square matrices.");
+        }
+        if(DIM[0] == 1) {
+            return values.get(0);
+        }else if(DIM[0] == 2) {
+            return null; // TODO: (1,1)*(2,2)-(1,2)*(2,1)
+        }else {
+            return null; // TODO: use subtensors
+        }
+
     }
 
-    public Tensor<T> transpose() throws IncompatibleDimensionsException {
-        return null; // TODO
+    public Tensor<T> transpose() throws DimensionError {
+        switch(ORDER) {
+            case 0:
+                return this;
+            case 1:
+                Tensor<T> res1 = new Tensor<>(DIM[1], DIM[0]);
+                for(int c=0; c<DIM[0]; c++) {
+                    res1.set(values.get(c), 0, c);
+                }
+                return res1;
+            case 2:
+                Tensor<T> res2 = new Tensor<>(DIM[1], DIM[0]);
+                for(int x=1; x<=DIM[0]; x++) {
+                    for(int y=1; y<=DIM[1]; y++) {
+                        res2.set(get(x,y), y,x);
+                    }
+                }
+                return res2;
+            default:
+                throw new IncompatibleDimensionsException("Transposition is a matrix operation. No Tensors of higher order than two allowed.");
+        }
     }
 
     @Override
@@ -159,6 +191,7 @@ public class Tensor<T extends Term> implements Term{
         }
         res = res + "]";
         return res;
+        // TODO: try using subtensors?
     }
 
     @Override
